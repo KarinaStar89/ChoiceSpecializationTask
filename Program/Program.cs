@@ -33,7 +33,7 @@ if (command == "n")
     var strCommand = Console.ReadLine();
     strCommand = ValidCmd(strCommand);
     int i = 0;
-    //string[] tempArray = new string[i + 1];
+    
     while (strCommand != "n")
     {
         if (strCommand == "y")
@@ -71,20 +71,6 @@ string strFilterArray = PrintArray(filterArray);
 Console.WriteLine($"Первоначальный массив: {strInitArray}");
 Console.WriteLine($"Массив со строками с длинной меньшими либо равными 3 : {strFilterArray}");
 
-// void AddToArray(string[] sourse, string[] temp, int i, string value)
-// {
-//     sourse = new string[i + 1];
-//     Array.Copy(temp, sourse, temp.Length);
-
-//     Console.WriteLine("Введите строку");
-//     //string? newStr = Console.ReadLine();
-//     sourse[i] = value;
-//     i++;
-
-//     temp = new string[i + 1];
-//     Array.Copy(initArray, temp, initArray.Length);
-// }
-
 string ValidCmd(string? command)
 {
     while (command != null && (command != "y" && command != "n" && command != "q"))
@@ -104,17 +90,16 @@ string[] FilterArray(string[] array)
     {
         if (array[i] != null && array[i].Length <= 3)
         {
-            Array.Copy(tempArray, result, tempArray.Length);
             result = new string[j + 1];
-             
-            result[j] = array[i];
-             Console.WriteLine($"array[{j}] {result[j]}");
+            Array.Copy(tempArray, result, tempArray.Length);                       
+            result[j] = array[i];         
             tempArray = new string[j + 1];
             Array.Copy(result, tempArray, result.Length);
+            
             j++;
         }
     }
-   Console.WriteLine($"result {result.Length}");
+   
     return result;
 }
 
