@@ -106,8 +106,9 @@ string[] FilterArray(string[] array)
         {
             Array.Copy(tempArray, result, tempArray.Length);
             result = new string[j + 1];
-              Console.WriteLine($"array[{j}] {array[i]}");
+             
             result[j] = array[i];
+             Console.WriteLine($"array[{j}] {result[j]}");
             tempArray = new string[j + 1];
             Array.Copy(result, tempArray, result.Length);
             j++;
