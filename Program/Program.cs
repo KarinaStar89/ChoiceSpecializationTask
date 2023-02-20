@@ -99,19 +99,21 @@ string[] FilterArray(string[] array)
 {
     string[] tempArray = new string[0];
     string[] result = new string[0];
+    int j = 0; 
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i] != null && array[i].Length <= 3)
         {
             Array.Copy(tempArray, result, tempArray.Length);
-            result = new string[i + 1];
-              Console.WriteLine($"array[i] {array[i]}");
-            result[i] = array[i];
-            tempArray = new string[i + 1];
+            result = new string[j + 1];
+              Console.WriteLine($"array[{j}] {array[i]}");
+            result[j] = array[i];
+            tempArray = new string[j + 1];
             Array.Copy(result, tempArray, result.Length);
+            j++;
         }
     }
-
+   Console.WriteLine($"result {result.Length}");
     return result;
 }
 
