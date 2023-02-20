@@ -32,13 +32,15 @@ if (command == "y")
 if (command == "n")
 {
     Console.WriteLine("Необходимо добавить строку?");
-    command = Console.ReadLine();
-    command = ValidCmd(command);
+    var strCommand = Console.ReadLine();
+    strCommand = ValidCmd(strCommand);
     int i = 0;
     //string[] tempArray = new string[i + 1];
-    while (command != null && command == "n")
+     Console.WriteLine($"{strCommand} strCommand");
+    while (strCommand != "n")
     {
-        if (command == "y")
+        Console.WriteLine($"{command} strCommand");
+        if (strCommand == "y")
         {         
             
             //Array.Copy(tempArray, initArray, tempArray.Length);
@@ -51,10 +53,16 @@ if (command == "n")
             i++;
 
              Console.WriteLine("Необходимо добавить строку?");
+             strCommand = Console.ReadLine();
+             strCommand = ValidCmd(strCommand);
         }
-        if (command == "q")
+        if (strCommand == "q")
         {
             return;
+        }
+         if (strCommand == "n")
+        {
+            break;
         }
     }
 }
@@ -71,6 +79,7 @@ string ValidCmd(string? command)
     while (command != null && (command != "y" && command != "n" && command != "q"))
     {
         Console.WriteLine("Допустимые команды y или n или q");
+        
         Console.WriteLine(textMsg);
         command = Console.ReadLine();
     }
@@ -79,7 +88,7 @@ string ValidCmd(string? command)
 
 string[] FilterArray(string[] array)
 {
-    string[] result = new string[0];
+    string[] result = new string[array.Length];
     for (int i = 0; i < array.Length; ++i)
     {
         if (array[i] != null && array[i].Length <= 3)
