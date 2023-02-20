@@ -8,17 +8,12 @@
 // [“Russia”, “Denmark”, “Kazan”] → []
 
 string[] staticArray = new string[] { "234", "1567", "-2", "computer science" };
-string[] initArray = new string[0];
+string[] initArray= new string[0];
 
 var textMsg = $"Берем заранее подготовленный программой массив строк(нажмите клавишу 'y'), либо будем добавлять строки самостоятельно(нажмите клавишу 'n')? Если хотите выйти из программы нажмите 'q'";
 Console.WriteLine(textMsg);
 string? command = Console.ReadLine();
-while (command != null && (command != "y" && command != "n" && command != "q"))
-{
-    Console.WriteLine("Допустимые команды y или n или q");
-    Console.WriteLine(textMsg);
-    command = Console.ReadLine();
-}
+command = ValidCmd(command);
 
 if (command == "q")
 {
@@ -27,6 +22,7 @@ if (command == "q")
 
 if (command == "y")
 {
+    initArray = new string[staticArray.Length];
     foreach (var item in staticArray)
     {
         initArray.Append(item);
@@ -35,22 +31,58 @@ if (command == "y")
 
 if (command == "n")
 {
-    Console.WriteLine("Введите строку");
-    var item = Console.ReadLine();
-    initArray.Append(item);
+    Console.WriteLine("Необходимо добавить строку?");
+    command = Console.ReadLine();
+    command = ValidCmd(command);
+    int i = 0;
+    //string[] tempArray = new string[i + 1];
+    while (command != null && command == "n")
+    {
+        if (command == "y")
+        {         
+            
+            //Array.Copy(tempArray, initArray, tempArray.Length);
+
+            Console.WriteLine("Введите строку");
+            string? newStr = Console.ReadLine();
+            initArray.Append(newStr);
+           
+            //Array.Copy(initArray, tempArray, initArray.Length);
+            i++;
+
+             Console.WriteLine("Необходимо добавить строку?");
+        }
+        if (command == "q")
+        {
+            return;
+        }
+    }
 }
+
 string[] filterArray = FilterArray(initArray);
+string strInitArray = PrintArray(initArray);
 string strFilterArray = PrintArray(filterArray);
 
-Console.WriteLine($"Первоначальный массив: {initArray}");
+Console.WriteLine($"Первоначальный массив: {strInitArray}");
 Console.WriteLine($"Массив со строками с длинной меньшими либо равными 3 : {strFilterArray}");
+
+string ValidCmd(string? command)
+{
+    while (command != null && (command != "y" && command != "n" && command != "q"))
+    {
+        Console.WriteLine("Допустимые команды y или n или q");
+        Console.WriteLine(textMsg);
+        command = Console.ReadLine();
+    }
+    return command;
+}
 
 string[] FilterArray(string[] array)
 {
     string[] result = new string[0];
     for (int i = 0; i < array.Length; ++i)
     {
-        if (array[i].Length <= 3)
+        if (array[i] != null && array[i].Length <= 3)
         {
             result.Append(array[i]);
         }
