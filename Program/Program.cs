@@ -29,7 +29,7 @@ if (command == "y")
 
 if (command == "n")
 {
-    Console.WriteLine("Необходимо добавить строку?");
+    Console.WriteLine("Необходимо добавить строку? (Допустимые команды y или n или q)");
     var strCommand = Console.ReadLine();
     strCommand = ValidCmd(strCommand);
     int i = 0;
@@ -49,7 +49,7 @@ if (command == "n")
             tempArray = new string[i + 1];
             Array.Copy(initArray, tempArray, initArray.Length);
 
-            Console.WriteLine("Необходимо добавить строку?");
+            Console.WriteLine("Необходимо добавить строку? (Допустимые команды y или n или q)");
             strCommand = Console.ReadLine();
             strCommand = ValidCmd(strCommand);
         }
@@ -75,7 +75,7 @@ string ValidCmd(string? command)
 {
     while (command != null && (command != "y" && command != "n" && command != "q"))
     {
-        Console.WriteLine("Допустимые команды y или n или q");
+        Console.WriteLine("Допустимые команды y - да или n - нет или q - выйти");
         command = Console.ReadLine();
     }
     return command;
